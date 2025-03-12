@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect} from "react"
 import Board from "./components/Board"
 import Header from "./components/Header";
 import Task from "./components/Task";
@@ -20,6 +20,10 @@ function App() {
   const [thereAreTasks, setThereAreTasks] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
 
+  //provo context per la current Date
+  //const {currentDate, setCurrentDate} = useContext(DateProvider);
+
+
   function getFormattedDate(date){
     return `${daySelected}-${date.getMonth()}-${date.getFullYear()}`;
   }
@@ -40,57 +44,48 @@ function App() {
     };
   
     // Funzione per generare il calendario
-    const renderCalendar = () => {
-      const month = currentDate.getMonth();
-      const year = currentDate.getFullYear();
-      const totalDays = daysInMonth(month, year);
-      const firstDay = firstDayOfMonth(month, year);
+  const renderCalendar = () => {
+    const month = currentDate.getMonth();
+    const year = currentDate.getFullYear();
+    const totalDays = daysInMonth(month, year);
+    const firstDay = firstDayOfMonth(month, year);
   
-      const weeks = [];
-      let days = [];
+    const weeks = [];
+    let days = [];
   
-      // Riempie i giorni vuoti prima del primo giorno del mese
-      for (let i = 0; i < firstDay; i++) {
-        days.push(<td key={`empty-${i}`}></td>);
-      }
+    // Riempie i giorni vuoti prima del primo giorno del mese
+    for (let i = 0; i < firstDay; i++) {
+      days.push(<td key={`empty-${i}`}></td>);
+    }
   
-      // Riempie i giorni del mese
-      for (let day = 1; day <= totalDays; day++) {
-        
-        function getNewFormattedDate(date){
-          return `${day}-${date.getMonth()}-${date.getFullYear()}`;
-        }
-      
-        let newFormattedDate = getNewFormattedDate(currentDate);
-      
-        useEffect(()=>{
-          newFormattedDate = getNewFormattedDate(currentDate);
-        }, [currentDate])
-
-        days.push(
-          <td key={day} onClick={()=>{
-              setTaskOpen(!taskOpen);
-              setDaySelected(day);
-              setSelectedCell(!selectedCell);
-            }} className={`${selectedCell && day === daySelected ? 'selected-cell' : ''} ${thereAreTasks ? 'there-are-tasks' : ''}`}>
-            <p className={`number-day ${day === Today && currentDate.getMonth() === ThisMonth && currentDate.getFullYear() === ThisYear ? 'this-day' : ''}`}>{day}</p>
-            <div className="tasks-in-cell-container">
-              {newFormattedDate in mapValues ? mapValues[newFormattedDate].map((value, index)=>{
-                return(
-                  <p key={index} className="tasks-in-cell"> 
-                    {value}
-                  </p>
-                )
-              }) : ''}
-            </div>
-            </td>
+    // Riempie i giorni del mese
+    for (let day = 1; day <= totalDays; day++) {
+      const newFormattedDate = `${day}-${month}-${year}`;
+  
+      days.push(
+        <td key={day} onClick={() => {
+          setTaskOpen(!taskOpen);
+          setDaySelected(day);
+          setSelectedCell(!selectedCell);
+        }} className={`${selectedCell && day === daySelected ? 'selected-cell' : ''} ${thereAreTasks ? 'there-are-tasks' : ''}`}>
+          <p className={`number-day ${day === Today && month === ThisMonth && year === ThisYear ? 'this-day' : ''}`}>{day}</p>
+          <div className="tasks-in-cell-container">
+            {mapValues[newFormattedDate] ? mapValues[newFormattedDate].map((value, index) => (
+              <p key={index} className="tasks-in-cell">
+                {value}
+              </p>
+            )) : ''}
+          </div>
+        </td>
       );
+  
       // Se abbiamo 7 giorni o siamo alla fine del mese, crea una nuova riga
       if (days.length === 7 || day === totalDays) {
         weeks.push(<tr key={day}>{days}</tr>);
         days = [];
       }
     }
+  
     return weeks;
   };
 
@@ -98,7 +93,7 @@ function App() {
     setCurrentDate((prevDate)=>{
       const nextDay = new Date(prevDate);
       nextDay.setMonth(prevDate.getMonth()+1);
-      return nextDay
+      return nextDay;
     });
   };
 
@@ -106,7 +101,7 @@ function App() {
     setCurrentDate((prevDate)=>{
       const precDay = new Date(prevDate);
       precDay.setMonth(prevDate.getMonth()-1);
-      return precDay
+      return precDay;
     });
   };
 
