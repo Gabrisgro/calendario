@@ -1,0 +1,89 @@
+.menu{
+    width: 0;
+    min-height: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    background: linear-gradient(45deg, black, rgb(29, 28, 28));
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    border-radius: 8px;
+    opacity: 0; /* Inizialmente invisibile */
+    transition: opacity 0.5s ease; /* Transizione fluida */
+    visibility: hidden;
+    transition: width 0.5s ease;
+}
+.visible{
+    opacity: 1;
+    visibility: visible;
+    width: 20%;
+    height: 100%;
+}
+.menu-h1{
+    width: 0;
+    min-width: 100%;
+    opacity: 0;
+    transition: opacity 5s ease-out;
+    transition: width 0.5s ease-out;
+    overflow: hidden;
+    height: 0;
+    transition: height 0.5s ease-out;
+}
+.h1-visible{
+    opacity: 1;
+    width: 100%;
+    overflow: hidden;
+    height: 1.3rem;
+}
+.options-of-visualization-container{
+    width: 100%;
+    border-bottom: 1px solid rgb(82, 82, 82);
+    padding: 10px;
+    overflow: hidden;
+}
+.options-of-visualization-container-ul{
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    height: 0;
+    transition: height 0.5s ease-out;
+}
+.ul-visible{
+    opacity: 1;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    list-style: none;
+    padding: 5px;
+}
+.options-of-visualization-container-li{
+    width: 0%;
+    padding: 5px;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    transition: width 0.5s ease-out;
+}
+.li-visible{   
+    opacity: 1;
+    height: 1.3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.options-of-visualization-container ul li i{
+    font-size: 1rem;
+    width: fit-content;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.options-of-visualization-container ul li p{
+    font-size: 1rem;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}

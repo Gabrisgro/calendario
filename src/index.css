@@ -15,6 +15,7 @@
     width: 100%;
     overflow: hidden;
 }
+/*header*/
 .header-main-container{
     display: flex;
     flex-direction: column;
@@ -91,6 +92,7 @@ header ul li{
     width: fit-content;
     max-width: fit-content;
 }
+/*board*/
 main{
     height: 100vh;
     padding: 2rem;
@@ -102,6 +104,7 @@ main{
     background: linear-gradient(45deg, black, grey);
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 table{
     margin: 5px;    
@@ -116,9 +119,6 @@ td{
     width: 14%;
     position: relative;
     cursor: pointer;
-    min-height: 97.12px;
-    height: fit-content;
-    max-height: 97.12px;
     overflow: hidden;
 }
 td:hover{
@@ -127,321 +127,13 @@ td:hover{
 .selected-cell{
     background-color: rgb(123, 122, 122);
 }
-.number-day{
-    position: absolute;
-    top: 3%;
-    left: 3%;
-}
-.this-day{
-    width: fit-content;
-    height: fit-content;
-    padding: 2%;
-    border-radius: 5px;
-    color: black;
-    background-color: white;
-}
-.tasks-in-cell{
-    height: fit-content;
-    width: 100%;
-    border: none;
-    outline: none;
-    background-color: rgb(180, 177, 177);   
-    color: black; 
-    padding: 1px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    justify-content: center;
-    align-items: center;
-}
-.tasks-in-cell-container{ /*fino a 600px va bene*/
-    height: fit-content;
-    position: absolute;
-    top: 20%;
-    left: 0%;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    max-height: 77%;
-    overflow: hidden;
-}
 th{
     border: 1px solid black;
     width: 14%;
 }
-.sidebar{
-    min-width: 200px;
-    width: 20%;
-    min-height: 100%;
-    top: 0;
-    right: 0;
-    padding: 20px;
-    background: linear-gradient(45deg, black, rgb(78, 77, 77));
-    display: flex;
-    flex-direction: column;
-    margin-top: 0px;
-    border-radius: 8px;
-}
-.input-container{
-    position: relative;
-    margin-top: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: stretch;
-}
-.input-container input{
-    border: 2px solid black;
-    outline: none;
-    border-radius: 10px;
-    padding: 5px;
-    max-width: 90%;
-    width: fit-content;
-    height: 100%;
-    margin-right: 2px;
-    flex: 1;
-}
-.input-container input::placeholder{
-    color: rgb(193, 189, 189);
-}
-.input-container input:hover{
-    border-color: #6a5acd;
-    box-shadow: 0 0 8px rgba(106, 90, 205, 0.5); 
-    transform: translateY(-0.5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-.input-container button{
-    outline: none;
-    border: none;
-    width: fit-content;
-    height: fit-content;
-    padding: 4px;
-    float: left;
-    margin-left: 2px;
-    color: white;
-    background-color: transparent;
-    cursor: pointer;
-}
-.input-container button:hover{
-    transform: translateY(-0.5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-.popup-container-setting-task{
-    position: absolute;
-    top: 110%;
-    right: 20px;
-    width: 0;
-    height: 0;
-    background-color: white;
-    color: black;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-    transition: opacity 0.5s ease;
-}
-.popup-container-setting-task ul{
-    list-style-type: none;
-}
-.popup-container-setting-task ul li{
-    border-bottom: 1px solid rgb(178, 176, 176);
-    display: flex;
-    flex-direction: row;
-    justify-content: stretch;
-    align-items: center;
-    padding: 5px;
-}
-.popup-container-setting-task ul li p{
-    flex: 1;
-    font-size: 0.8rem;
-}
-.popup-container-setting-task ul li div{
-    width: fit-content;
-    height: fit-content;
-    margin-right: 5px;
-}
-.popup-container-visible{
-    width: 75%;
-    height: fit-content;
-    opacity: 1;
-    visibility: visible;
-    right: 0%;
-}
-.task-container{
-    flex: 1;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    margin-top: 20px;
-    border-bottom: 1px solid rgb(61, 60, 60);
-    gap: 14px;
-}
-.task-card{
-    list-style-type: none;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    background-color: white;
-    color: black;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    align-items: center;
-    justify-content: stretch;
-}
-.task-card:hover{
-    transform: translateY(-1px);
-    transition-delay: 0.5s;
-}
-.check{
-    outline: none;
-    border: 1px solid grey; 
-    width: fit-content;
-    height: fit-content;
-    margin-right: 6px;
-}
-.task-card label{   
-    flex: 1;
-    overflow: hidden;
-}
-.task-card .task-button{
-    width: fit-content;
-    height: fit-content;
-    outline: none;
-    border: none;
-    margin: 0;
-    margin-left: 6px;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    background-color: transparent;
-    gap: 6px;
-    align-items: center;
-}
-.task-button button{
-    background-color: transparent;
-    border: none;
-    outline: none;
-}
-.sidebar footer{
-    padding: 0;
-    margin: 5px;
-}
-.sidebar footer button{
-    color: white;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    width: fit-content;
-    height: fit-content;
-    cursor: pointer;
-}
-.menu{
-    width: 0;
-    min-height: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    padding: 20px;
-    background: linear-gradient(45deg, black, rgb(29, 28, 28));
-    display: flex;
-    flex-direction: column;
-    margin-top: 5px;
-    border-radius: 8px;
-    opacity: 0; /* Inizialmente invisibile */
-    transition: opacity 0.5s ease; /* Transizione fluida */
-    visibility: hidden;
-    transition: width 0.5s ease;
-}
-.visible{
-    opacity: 1;
-    visibility: visible;
-    /*min-width: 200px;*/
-    width: 20%;
-    height: 100%;
-}
-.menu-h1{
-    width: 0;
-    min-width: 100%;
-    opacity: 0;
-    transition: opacity 5s ease-out;
-    transition: width 0.5s ease-out;
-    overflow: hidden;
-    height: 0;
-}
-.h1-visible{
-    opacity: 1;
-    width: 100%;
-    overflow: hidden;
-    height: 1.3rem;
-}
-.options-of-visualization-container{
-    width: 100%;
-    border-bottom: 1px solid rgb(82, 82, 82);
-    padding: 10px;
-    overflow: hidden;
-}
-.options-of-visualization-container-ul{
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-    height: 0;
-}
-.ul-visible{
-    opacity: 1;
-    height: 145px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    list-style: none;
-    padding: 5px;
-}
-.options-of-visualization-container-li{
-    width: 0%;
-    padding: 5px;
-    overflow: hidden;
-    height: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-    transition: width 0.5s ease-out;
-}
-.li-visible{   
-    opacity: 1;
-    height: 1.3rem;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-}
-.options-of-visualization-container ul li i{
-    font-size: 1rem;
-    width: fit-content;
-    margin-right: 10px;
-}
-.options-of-visualization-container ul li p{
-    font-size: 1rem;
-    width: fit-content;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-}
-.all-tasks-button-container{
-    font-size: 1rem;
-    display: flex;
-    flex-direction: row;
-    height: fit-content;
-    width: 100%;
-    padding: 5px;
-}
-.all-tasks-button-container i{
-    width: fit-content;
-}
-.all-tasks-button-container p{
-    width: fit-content;
-}
+/*task*/
+/*menu*/
+/*navbar*/
 nav{
     display: flex;
     flex-direction: column;
@@ -460,4 +152,5 @@ nav i{
     align-items: center;
     justify-content: center;
     width: fit-content;
+    cursor: pointer;
 }

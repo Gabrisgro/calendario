@@ -1,0 +1,123 @@
+
+.td-board{
+    min-height: 97.12px;
+    height: fit-content;
+    max-height: 97.12px;
+}
+.number-day{
+    position: absolute;
+    /*top: 3%;
+    left: 3%;*/
+    top: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    padding: 3px;
+    padding-top: 0;
+}
+.number-day:hover{
+    font-size: 0.9rem;
+}
+.this-day{
+    width: fit-content;
+    height: fit-content;
+    padding: 2%;
+    border-radius: 5px;
+    color: black;
+    background-color: white;
+}
+.tasks-in-cell{
+    height: fit-content;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: rgb(180, 177, 177);   
+    color: black; 
+    padding: 1px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    justify-content: center;
+    align-items: center;
+}
+.tasks-in-cell-container{ /*fino a 600px va bene*/
+    height: fit-content;
+    position: absolute;
+    top: 20%;
+    left: 0%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 77%;
+    overflow: hidden;
+}
+.board-day-container{
+    padding: 5px;
+    margin: 5px;
+    background-color: black;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.board-day-splitter{
+    height: 100%;
+    width: 2px;
+    color: white;
+    margin: 2px;
+    background-color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.board-right-container,
+.board-left-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    padding: 5px;
+}
+.board-right-container h1, 
+.board-left-container h1{
+    width: fit-content;
+    height: fit-content;
+}
+.task-board-right{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    padding: 5px;
+    margin: 2px;
+    background-color: white;
+    color: black;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+}
+.task-board-right p{
+    width: fit-content;
+    height: fit-content;
+}
+.task-board-right:hover{
+    transform: translateY(-0.5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+.arrow-button-day{
+    width: fit-content;
+    height: fit-content;
+    margin: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
+    border: none;
+    color: white;
+}
+.arrow-button-day i{
+    font-size: 1.5rem;
+    cursor: pointer;
+}

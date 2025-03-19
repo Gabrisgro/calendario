@@ -1,8 +1,39 @@
-export default function Header({currentDate, HandleOnClickArrowRight, HandleOnClickArrowLeft, setCurrentDate, handleMenuVisible}){
+import { useContext } from "react";
+import { ContextDate } from "../context/ContextDate";
+import {ContextVisible} from "../context/ContextVisible";
+
+export default function Header({HandleOnClickArrowRight, HandleOnClickArrowLeft}){
+
+    const {currentDate, setCurrentDate} = useContext(ContextDate);
+    const {setMenuVisible, menuVisible} = useContext(ContextVisible);
+
+    //funzione per gestire l'uscita del menu
+    function handleMenuVisible(){
+        setMenuVisible(!menuVisible);
+    }
+
     const anni = [];
     for (let i=1970; i<3000; i++){
         anni.push(i);
     }   
+
+    //per andare a destra di un mese
+    function HandleOnClickArrowRight(prevDate){
+        setCurrentDate((prevDate)=>{
+          const nextDay = new Date(prevDate);
+          nextDay.setMonth(prevDate.getMonth()+1);
+          return nextDay;
+        });
+      };
+
+    //per andare a sinistra di un mese
+    function HandleOnClickArrowLeft(p){ 
+        setCurrentDate((prevDate)=>{
+        const precDay = new Date(prevDate);
+        precDay.setMonth(prevDate.getMonth()-1);
+        return precDay;
+        });
+    };
 
     return(
         <header>
