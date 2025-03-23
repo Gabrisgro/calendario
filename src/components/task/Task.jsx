@@ -31,24 +31,20 @@ export default function Task(){
         addKeyValue(FormattedDate, task); 
     }
 
-    let i = 0;
     //aggiungo chiavi e valori alla mappa
     function addKeyValue(key, value){
         if (!(key in mapValues)){
             setMapValues(prevMap => ({
             ...prevMap, // Copia tutte le chiavi esistenti
-            [key]: {id: i, task: [value]} // Aggiungi la nuova chiave con il valore associato
+            [key]: [value] // Aggiungi la nuova chiave con il valore associato
             }));
-            i++;
         }else{
             setMapValues(prevMap => ({
             ...prevMap, // Copia tutte le chiavi esistenti
-            [key]: [...(prevMap[key].task || []), value] // Aggiungi il nuovo valore alla chiave esistente
+            [key]: [...(prevMap[key] || []), value] // Aggiungi il nuovo valore alla chiave esistente
             }));
         }
     }
-
-    console.log(mapValues);
 
     const mesi=['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
 

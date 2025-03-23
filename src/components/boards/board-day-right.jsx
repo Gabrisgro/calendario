@@ -14,34 +14,63 @@ export default function BoardDayRight({FormattedDate}){
     const mesi=['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
     const nomeMese = mesi[currentDate.getMonth()];
 
+    const arrayMove = (array, fromIndex, toIndex) => {
+        const newArray = [...array]; // Crea una copia dell'array
+        const [movedItem] = newArray.splice(fromIndex, 1); // Rimuove l'elemento da fromIndex
+        newArray.splice(toIndex, 0, movedItem); // Inserisce l'elemento in toIndex
+        return newArray;
+    };
+
     const handleDragEnd = (event) => {
         const { active, over } = event;
-        if (active.id !== over.id) {
 
-            const tasks = mapValues.FormattedDate;
-            const oldIndex = tasks.findIndex(task => task.id === active.id);
-            const newIndex = tasks.findIndex(task => task.id === over.id);
-            const newTasks = [...tasks];
-            newTasks.splice(oldIndex, 1);
-            newTasks.splice(newIndex, 0, tasks[oldIndex]);
+        // Verifica se l'elemento di destinazione esiste
+        if (!over) return;
 
-            setMapValues((prevState)=>({
-                ...prevState, 
-                [FormattedDate]: newTasks
+        // Verifica se la chiave esiste in mapValues
+        if (!mapValues[FormattedDate]) return;
+
+        // Trova l'array di task per la chiave formattedData
+        const tasks = mapValues[FormattedDate];
+
+        // Trova gli indici delle task trascinate e di destinazione
+        const oldIndex = active.id;
+        const newIndex = over.id;
+
+        // Se gli indici sono validi e diversi, riordina l'array
+        if (oldIndex !== newIndex && oldIndex !== -1 && newIndex !== -1) {
+            const newTasks = arrayMove(tasks, oldIndex, newIndex);
+
+            // Aggiorna mapValues con il nuovo array di task
+            setMapValues((prevMapValues) => ({
+                ...prevMapValues,
+                [FormattedDate]: newTasks, // Sostituisce l'array di task per la chiave formattedData
             }));
         }
     };
-    
+
     return(
         <div className="board-right-container">
             <h1>Task del {`${daySelected} ${nomeMese} ${currentDate.getFullYear()}`} </h1>
-                <div>
-                    {mapValues[FormattedDate] ? mapValues[FormattedDate].map((task, taskIndex)=>{
-                        return(
-                            <TaskBoardDay task={task} key={taskIndex}/>
-                        )
-                    }) : ''}
-                </div>
+                {mapValues[FormattedDate] ? 
+                    <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                        <div>
+                        <SortableContext items={mapValues[FormattedDate].map((task, index)=>{
+                            return(
+                                index
+                            )
+                        } )} 
+                        strategy={verticalListSortingStrategy}>
+                            {mapValues[FormattedDate].map((task, taskIndex)=>{
+
+                                return(
+                                    <TaskBoardDay task={task} key={taskIndex} id={taskIndex}/>
+                                )
+                            })}
+                        </SortableContext> 
+                        </div>
+                    </DndContext>
+                    : ''}
         </div>
     )
 }
